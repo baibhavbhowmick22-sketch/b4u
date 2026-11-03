@@ -1,0 +1,297 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>solob4u - Official BCalc Website</title>
+    <style>
+        :root {
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --subtext-color: #555555;
+            --border-color: #e1e8ed;
+        }
+
+        body.dark-mode {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-color: #ffffff;
+            --subtext-color: #cccccc;
+            --border-color: #333333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+       
+        .shape {
+            position: fixed;
+            z-index: -1;
+            opacity: 0.25;
+            animation: float 12s infinite ease-in-out alternate;
+        }
+
+        .circle { width: 90px; height: 90px; background: #e74c3c; border-radius: 50%; top: 10%; left: 8%; }
+        .triangle { width: 0; height: 0; border-left: 50px solid transparent; border-right: 50px solid transparent; border-bottom: 90px solid #f1c40f; top: 60%; left: 82%; }
+        .square { width: 80px; height: 80px; background: #3498db; top: 75%; left: 12%; }
+        .rectangle { width: 120px; height: 60px; background: #9b59b6; top: 18%; left: 78%; }
+        .pie { width: 90px; height: 90px; background: conic-gradient(#2ecc71 0% 70%, #e67e22 70% 100%); border-radius: 50%; top: 45%; left: 48%; }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-40px) rotate(360deg); }
+        }
+
+        
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto 20px auto;
+            position: relative;
+        }
+
+        .menu-btn {
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: var(--text-color);
+            cursor: pointer;
+            padding: 5px 15px;
+            border-radius: 5px;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 40px;
+            background-color: var(--card-bg);
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            border-radius: 8px;
+            z-index: 10;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .dropdown-content button {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            padding: 12px 20px;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            font-size: 0.95em;
+        }
+
+        .dropdown-content button:hover {
+            background-color: rgba(0,0,0,0.05);
+        }
+
+      
+        .welcome-header {
+            font-size: 1.2em;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+        }
+
+        .welcome-header a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .solob4u-text {
+            color: #ff3366;
+            text-decoration: underline;
+            text-decoration-color: #00e676;
+            text-decoration-thickness: 3px;
+            cursor: pointer;
+        }
+
+       
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            border: 1px solid var(--border-color);
+        }
+
+        .logo-img {
+            width: 140px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+        
+        .demo-box {
+            margin: 25px 0;
+            padding: 15px;
+            background-color: rgba(231, 76, 60, 0.08);
+            border-left: 5px solid #e74c3c;
+            border-radius: 5px;
+            text-align: left;
+            font-size: 0.98em;
+        }
+
+        .demo-link {
+            color: #e74c3c;
+            font-weight: bold;
+            word-break: break-all;
+            text-decoration: underline;
+        }
+
+        .btn-download {
+            display: inline-block;
+            background-color: #27ae60;
+            color: white;
+            padding: 15px 32px;
+            font-size: 1.2em;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            margin: 15px 0;
+            box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+            transition: transform 0.2s, background 0.3s;
+        }
+
+        .btn-download:hover {
+            background-color: #219653;
+            transform: translateY(-2deg);
+        }
+
+        .credits {
+            margin-top: 35px;
+            font-size: 0.88em;
+            color: var(--subtext-color);
+            font-style: italic;
+            text-align: right;
+            border-top: 1px solid var(--border-color);
+            padding-top: 10px;
+        }
+
+        .comments-section {
+            margin-top: 35px;
+            text-align: left;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    
+    <div class="shape circle"></div>
+    <div class="shape triangle"></div>
+    <div class="shape square"></div>
+    <div class="shape rectangle"></div>
+    <div class="shape pie"></div>
+
+    
+    <div class="top-bar">
+        <div></div>
+        <!-- Three Dots Dropdown for Dark/Light Mode -->
+        <div style="position: relative;">
+            <button class="menu-btn" onclick="toggleDropdown()">&#8226;&#8226;&#8226;</button>
+            <div id="myDropdown" class="dropdown-content">
+                <button onclick="toggleTheme()">🌗 Switch Dark/Light Mode</button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="welcome-header">
+        <a href="index.html">WELCOME TO THE OFFICIAL WEBSITE OF <span class="solob4u-text">solob4u</span></a>
+    </div>
+
+    
+    <div class="container">
+        <!-- Logo -->
+        <img src="logo.png" alt="solob4u Logo" class="logo-img">
+
+        <h1 style="margin-top: 0;">BCalc Software</h1>
+        <p style="color: var(--subtext-color);">A fast, reliable, and powerful desktop calculator for Windows.</p>
+
+        
+        <div class="demo-box">
+            For a demo of app you may try the web version of app - 
+            <a href="https://webcalc-bv1-gmyzqcktnqhvxpmemefz8a.streamlit.app/" target="_blank" class="demo-link">https://webcalc-bv1-gmyzqcktnqhvxpmemefz8a.streamlit.app/</a>
+        </div>
+
+       
+        <a href="./BCalc.exe" download="BCalc.exe" class="btn-download">📥 Download BCalc .exe</a>
+
+       
+        <div style="margin: 30px 0; text-align: left; background: rgba(0,0,0,0.03); padding: 20px; border-radius: 8px;">
+            <h3 style="margin-top: 0;">⚡ Key Features</h3>
+            <ul style="color: var(--subtext-color); line-height: 1.8; padding-left: 20px; margin-bottom: 0;">
+                <li><strong>Lightning Fast:</strong> Instant response times optimized for Windows.</li>
+                <li><strong>Advanced Computations:</strong> Smooth standard & scientific operations.</li>
+                <li><strong>Lightweight & Secure:</strong> Virus-free and consumes low memory.</li>
+                <li><strong>Offline Ready:</strong> Works 100% offline without internet.</li>
+            </ul>
+        </div>
+
+        
+        <div class="credits">
+            Designed, Directed and Invented by Baibhav Bhowmick
+        </div>
+
+        
+        <div class="comments-section">
+            <h3>User Reviews & Comments</h3>
+            <div id="disqus_thread"></div>
+            <script>
+                var disqus_config = function () {
+                    this.page.url = window.location.href;  
+                    this.page.identifier = "bcalc-app";     
+                };
+                (function() { 
+                    var d = document, s = d.createElement('script');
+                    s.src = 'https://solob4u.disqus.com/embed.js'; 
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                })();
+            </script>
+        </div>
+    </div>
+
+    
+    <script>
+        function toggleDropdown() {
+            var dropdown = document.getElementById("myDropdown");
+            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle("dark-mode");
+            document.getElementById("myDropdown").style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.menu-btn')) {
+                var dropdown = document.getElementById("myDropdown");
+                if (dropdown && dropdown.style.display === "block") {
+                    dropdown.style.display = "none";
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
