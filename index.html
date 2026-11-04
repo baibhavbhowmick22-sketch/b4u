@@ -3,171 +3,294 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BCalc - Fast & Free Math Utility</title>
+    <title>solob4u - Official BCalc Website</title>
     <style>
         :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-color: #f8fafc;
-            --accent-color: #38bdf8;
-            --accent-hover: #0284c7;
-            --subtext: #94a3b8;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --subtext-color: #555555;
+            --border-color: #e1e8ed;
+        }
+
+        body.dark-mode {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-color: #ffffff;
+            --subtext-color: #cccccc;
+            --border-color: #333333;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
+            text-align: center;
             margin: 0;
-            padding: 0;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+       
+        .shape {
+            position: fixed;
+            z-index: -1;
+            opacity: 0.25;
+            animation: float 12s infinite ease-in-out alternate;
+        }
+
+        .circle { width: 90px; height: 90px; background: #e74c3c; border-radius: 50%; top: 10%; left: 8%; }
+        .triangle { width: 0; height: 0; border-left: 50px solid transparent; border-right: 50px solid transparent; border-bottom: 90px solid #f1c40f; top: 60%; left: 82%; }
+        .square { width: 80px; height: 80px; background: #3498db; top: 75%; left: 12%; }
+        .rectangle { width: 120px; height: 60px; background: #9b59b6; top: 18%; left: 78%; }
+        .pie { width: 90px; height: 90px; background: conic-gradient(#2ecc71 0% 70%, #e67e22 70% 100%); border-radius: 50%; top: 45%; left: 48%; }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-40px) rotate(360deg); }
+        }
+
+        
+        .top-bar {
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            min-height: 100vh;
-        }
-
-        header {
-            width: 100%;
-            padding: 2rem 0;
-            text-align: center;
-            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
-            border-bottom: 1px solid #334155;
-        }
-
-        h1 {
-            margin: 0;
-            font-size: 2.5rem;
-            color: var(--accent-color);
-            letter-spacing: 1px;
-        }
-
-        p.subtitle {
-            color: var(--subtext);
-            margin-top: 0.5rem;
-            font-size: 1.1rem;
-        }
-
-        .container {
             max-width: 800px;
-            width: 90%;
-            margin: 2rem auto;
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
+            margin: 0 auto 20px auto;
+            position: relative;
         }
 
-        .card {
+        .menu-btn {
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: var(--text-color);
+            cursor: pointer;
+            padding: 5px 15px;
+            border-radius: 5px;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 40px;
             background-color: var(--card-bg);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
-            border: 1px solid #334155;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            border-radius: 8px;
+            z-index: 10;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
         }
 
-        .download-box {
-            text-align: center;
+        .dropdown-content button {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            padding: 12px 20px;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            font-size: 0.95em;
+        }
+
+        .dropdown-content button:hover {
+            background-color: rgba(0,0,0,0.05);
+        }
+
+      
+        .welcome-header {
+            font-size: 1.2em;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+        }
+
+        .welcome-header a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .solob4u-text {
+            color: #ff3366;
+            text-decoration: underline;
+            text-decoration-color: #00e676;
+            text-decoration-thickness: 3px;
+            cursor: pointer;
+        }
+
+       
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            border: 1px solid var(--border-color);
+        }
+
+        .logo-img {
+            width: 140px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+        
+        .demo-box {
+            margin: 25px 0;
+            padding: 15px;
+            background-color: rgba(231, 76, 60, 0.08);
+            border-left: 5px solid #e74c3c;
+            border-radius: 5px;
+            text-align: left;
+            font-size: 0.98em;
+        }
+
+        .demo-link {
+            color: #e74c3c;
+            font-weight: bold;
+            word-break: break-all;
+            text-decoration: underline;
         }
 
         .btn-download {
             display: inline-block;
-            background-color: var(--accent-color);
-            color: #0f172a;
-            padding: 0.8rem 2rem;
-            font-size: 1.2rem;
-            font-weight: bold;
+            background-color: #27ae60;
+            color: white;
+            padding: 15px 32px;
+            font-size: 1.2em;
             text-decoration: none;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 14px 0 rgba(56, 189, 248, 0.39);
+            border-radius: 6px;
+            font-weight: bold;
+            margin: 15px 0;
+            box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+            transition: transform 0.2s, background 0.3s;
         }
 
         .btn-download:hover {
-            background-color: var(--accent-hover);
-            color: #ffffff;
-            transform: translateY(-2px);
+            background-color: #219653;
+            transform: translateY(-2deg);
         }
 
+        .credits {
+            margin-top: 35px;
+            font-size: 0.88em;
+            color: var(--subtext-color);
+            font-style: italic;
+            text-align: right;
+            border-top: 1px solid var(--border-color);
+            padding-top: 10px;
+        }
+
+        
         .rating-section {
+            margin-top: 35px;
             text-align: center;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
         }
-
         .rating-title {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 15px;
             color: var(--text-color);
         }
-
         .emoji-container {
             display: flex;
             justify-content: center;
-            gap: 1.5rem;
-            font-size: 2.5rem;
+            gap: 15px;
+            font-size: 2.2em;
         }
-
         .emoji-btn {
             background: none;
             border: none;
             cursor: pointer;
             transition: transform 0.2s ease, filter 0.2s ease;
-            filter: grayscale(40%);
+            filter: grayscale(30%);
             outline: none;
         }
-
-        .emoji-btn:hover {
-            transform: scale(1.3);
+        .emoji-btn:hover, .emoji-btn.active {
+            transform: scale(1.25);
             filter: grayscale(0%);
         }
-
-        .emoji-btn.active {
-            transform: scale(1.3);
-            filter: grayscale(0%);
-        }
-
         #rating-response {
-            margin-top: 1rem;
-            font-size: 0.95rem;
-            color: var(--accent-color);
+            margin-top: 12px;
+            font-size: 0.95em;
+            color: #27ae60;
+            font-weight: 600;
             height: 20px;
-        }
-
-        footer {
-            margin-top: auto;
-            padding: 1.5rem 0;
-            text-align: center;
-            color: var(--subtext);
-            font-size: 0.9rem;
-            border-top: 1px solid #334155;
-            width: 100%;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>BCalc Utility</h1>
-        <p class="subtitle">Standalone Fast Mathematical Executable</p>
-    </header>
+    
+    <div class="shape circle"></div>
+    <div class="shape triangle"></div>
+    <div class="shape square"></div>
+    <div class="shape rectangle"></div>
+    <div class="shape pie"></div>
 
+    
+    <div class="top-bar">
+        <div></div>
+       
+        <div style="position: relative;">
+            <button class="menu-btn" onclick="toggleDropdown()">&#8226;&#8226;&#8226;</button>
+            <div id="myDropdown" class="dropdown-content">
+                <button onclick="toggleTheme()">🌗 Switch Dark/Light Mode</button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="welcome-header">
+        <a href="index.html">WELCOME TO THE OFFICIAL WEBSITE OF <span class="solob4u-text">solob4u</span></a>
+    </div>
+
+    
     <div class="container">
-        <div class="card download-box">
-            <h2>Download BCalc v1.0</h2>
-            <p style="color: var(--subtext); margin-bottom: 1.5rem;">Get the lightweight Windows executable for instant calculations.</p>
-            <a href="BCalc.exe" class="btn-download" download>⚡ Download BCalc.exe</a>
+        
+        <img src="logo.png" alt="solob4u Logo" class="logo-img">
+
+        <h1 style="margin-top: 0;">BCalc Software</h1>
+        <p style="color: var(--subtext-color);">A fast, reliable, and powerful desktop calculator for Windows.</p>
+
+        
+        <div class="demo-box">
+            For a demo of app you may try the web version of app - 
+            <a href="https://webcalc-bv1-gmyzqcktnqhvxpmemefz8a.streamlit.app/" target="_blank" class="demo-link">https://webcalc-bv1-gmyzqcktnqhvxpmemefz8a.streamlit.app/</a>
         </div>
 
-        <div class="card">
-            <h3>About BCalc</h3>
-            <p style="color: var(--subtext); line-height: 1.6;">
-                BCalc is designed for quick, lightweight mathematical calculations without extra bloatware. Built for speed and standalone offline use.
-            </p>
+       
+        <a href="./bcalc_v-1.exe" download="bcalc_v-1.exe" class="btn-download">📥 Download BCalc .exe</a>
+
+       
+        <div style="margin: 30px 0; text-align: left; background: rgba(0,0,0,0.03); padding: 20px; border-radius: 8px;">
+            <h3 style="margin-top: 0;">⚡ Key Features</h3>
+            <ul style="color: var(--subtext-color); line-height: 1.8; padding-left: 20px; margin-bottom: 0;">
+                <li><strong>Lightning Fast:</strong> Instant response times optimized for Windows.</li>
+                <li><strong>Advanced Computations:</strong> Smooth standard & scientific operations.</li>
+                <li><strong>Lightweight & Secure:</strong> Virus-free and consumes low memory.</li>
+                <li><strong>Offline Ready:</strong> Works 100% offline without internet.</li>
+            </ul>
         </div>
 
-        <div class="card rating-section">
+        
+        <div class="credits">
+            Designed, Directed and Invented by Baibhav Bhowmick
+        </div>
+
+       
+        <div class="rating-section">
             <div class="rating-title">How is your experience with BCalc?</div>
             <div class="emoji-container">
-                <button class="emoji-btn" onclick="rate('😡', 'Sorry to hear that!')" title="Poor">😡</button>
-                <button class="emoji-btn" onclick="rate('😕', 'We will try to improve!')" title="Fair">😕</button>
-                <button class="emoji-btn" onclick="rate('😐', 'Thanks for the feedback!')" title="Average">😐</button>
+                <button class="emoji-btn" onclick="rate('😡', 'Sorry to hear that! We will improve.')" title="Poor">😡</button>
+                <button class="emoji-btn" onclick="rate('😕', 'Thanks for the feedback!')" title="Fair">😕</button>
+                <button class="emoji-btn" onclick="rate('😐', 'Thanks for your input!')" title="Average">😐</button>
                 <button class="emoji-btn" onclick="rate('😊', 'Glad you liked it!')" title="Good">😊</button>
                 <button class="emoji-btn" onclick="rate('🔥', 'Awesome! Thanks for supporting!')" title="Excellent">🔥</button>
             </div>
@@ -175,17 +298,34 @@
         </div>
     </div>
 
-    <footer>
-        &copy; 2026 SoloB4U | Designed for BCalc App Distribution
-    </footer>
-
+    
     <script>
+        function toggleDropdown() {
+            var dropdown = document.getElementById("myDropdown");
+            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle("dark-mode");
+            document.getElementById("myDropdown").style.display = "none";
+        }
+
         function rate(emoji, message) {
             document.getElementById('rating-response').innerText = emoji + " " + message;
-            const buttons = document.querySelectorAll('.emoji-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
+            var buttons = document.querySelectorAll('.emoji-btn');
+            buttons.forEach(function(btn) { btn.classList.remove('active'); });
             event.currentTarget.classList.add('active');
         }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.menu-btn')) {
+                var dropdown = document.getElementById("myDropdown");
+                if (dropdown && dropdown.style.display === "block") {
+                    dropdown.style.display = "none";
+                }
+            }
+        }
     </script>
+
 </body>
 </html>
