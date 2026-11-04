@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -87,7 +87,6 @@
             transform: translateY(-2px);
         }
 
-        
         .rating-section {
             text-align: center;
         }
@@ -150,15 +149,12 @@
     </header>
 
     <div class="container">
-       
         <div class="card download-box">
             <h2>Download BCalc v1.0</h2>
             <p style="color: var(--subtext); margin-bottom: 1.5rem;">Get the lightweight Windows executable for instant calculations.</p>
-            
             <a href="BCalc.exe" class="btn-download" download>⚡ Download BCalc.exe</a>
         </div>
 
-        
         <div class="card">
             <h3>About BCalc</h3>
             <p style="color: var(--subtext); line-height: 1.6;">
@@ -166,7 +162,6 @@
             </p>
         </div>
 
-        
         <div class="card rating-section">
             <div class="rating-title">How is your experience with BCalc?</div>
             <div class="emoji-container">
@@ -187,7 +182,6 @@
     <script>
         function rate(emoji, message) {
             document.getElementById('rating-response').innerText = emoji + " " + message;
-            
             const buttons = document.querySelectorAll('.emoji-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
             event.currentTarget.classList.add('active');
